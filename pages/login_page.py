@@ -1,4 +1,5 @@
 from pages.base_page import BasePage
+from data.test_data import BASE_URL
 
 class LoginPage(BasePage):
 
@@ -8,6 +9,9 @@ class LoginPage(BasePage):
         self.password_input = page.locator("#password")
         self.login_button = page.locator("#login-button")
         self.error_message = page.locator('[data-test="error"]')
+
+    def open(self):
+        self.page.goto(BASE_URL)
 
     def login(self,username,password):
         self.username_input.fill(username)
