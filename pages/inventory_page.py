@@ -19,7 +19,7 @@ class InventoryPage(BasePage):
         item.locator("button", has_text="Add to cart").click()
 
     def get_cart_count(self):
-        if self.cart_badge.count == 0:
+        if self.cart_badge.count() == 0:
             return 0
         expect(self.cart_badge).to_be_visible()
         return int(self.cart_badge.inner_text())
