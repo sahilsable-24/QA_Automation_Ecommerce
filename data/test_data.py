@@ -16,3 +16,5 @@ USERS = {
         "password":"wrong_pass"
     }
 }
+
+PRODUCTS_NAME = [ "Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt"]

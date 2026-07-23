@@ -8,6 +8,8 @@ class InventoryPage(BasePage):
         self.page_title = page.locator(".title")
         self.inventory_items = page.locator(".inventory_item")
         self.cart_badge = page.locator(".shopping_cart_badge")
+        self.sort_dropdown = page.locator(".product_sort_container")
+        self.active_option = page.locator(".active_option")
 
     def get_product_count(self):
         return self.inventory_items.count()
@@ -23,3 +25,17 @@ class InventoryPage(BasePage):
             return 0
         expect(self.cart_badge).to_be_visible()
         return int(self.cart_badge.inner_text())
+
+    def remove_product_from_cart_by_name(self,product_name):
+        item = self.page.locator(".inventory_item", has_text=product_name)
+        item.locator("button", has_text="Remove").click()
+
+    def sort_products(self,option_value):
+        self.sort_dropdown.select_option(option_value)
+
+    def get_active_option(self):
+        return self.active_option.inner_text()
+
+    def get_all_prices(self):
+        prices = self.page.locator(".inventory_item_price").all_inner_texts()
+        return [float(p.replace("$","")) for p in prices]
