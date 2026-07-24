@@ -10,6 +10,7 @@ class InventoryPage(BasePage):
         self.cart_badge = page.locator(".shopping_cart_badge")
         self.sort_dropdown = page.locator(".product_sort_container")
         self.active_option = page.locator(".active_option")
+        self.cart_link = page.locator(".shopping_cart_link")
 
     def get_product_count(self):
         return self.inventory_items.count()
@@ -39,3 +40,6 @@ class InventoryPage(BasePage):
     def get_all_prices(self):
         prices = self.page.locator(".inventory_item_price").all_inner_texts()
         return [float(p.replace("$","")) for p in prices]
+
+    def go_to_cart(self):
+        self.cart_link.click()
